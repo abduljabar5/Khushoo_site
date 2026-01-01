@@ -5,65 +5,581 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Khushoo - Find Focus in Your Prayer</title>
     <meta name="description" content="Block distractions during prayer times automatically. The ultimate iOS app for maintaining Khushoo." />
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            },
-            colors: {
-              khushoo: {
-                dark: '#0B0F19', // Deep dark blue/black from screenshot
-                card: '#111827',
-                accent: '#38bdf8', // Light blue from "Next Prayer" text
-                primary: '#4ade80', // Green from icon
-                secondary: '#facc15', // Yellow from icon
-              }
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      body {
-        background-color: #0B0F19;
-        color: #f3f4f6;
-      }
-      /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #0B0F19;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #374151;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #4b5563;
-      }
-    </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0",
-    "vite": "https://esm.sh/vite@^7.3.0",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
-  }
-}
-</script>
-</head>
+    <link rel="stylesheet" href="styles.css">
+  </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+    <div id="app" class="app-container">
+      <!-- Navigation -->
+      <nav id="navbar" class="navbar">
+        <div class="navbar-container">
+          <div class="navbar-content">
+            <!-- Logo -->
+            <a href="#/" class="logo" data-link>
+              <span class="logo-text">Khushoo</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="desktop-menu">
+              <div class="nav-links">
+                <a href="#/" class="nav-link" data-link>Home</a>
+                <a href="#/privacy" class="nav-link" data-link>Privacy</a>
+                <a href="#/terms" class="nav-link" data-link>Terms</a>
+                <a href="#download" class="nav-btn">Get App</a>
+              </div>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="mobile-menu-btn-container">
+              <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle menu">
+                <svg id="menu-icon" class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="4" x2="20" y1="12" y2="12"></line>
+                  <line x1="4" x2="20" y1="6" y2="6"></line>
+                  <line x1="4" x2="20" y1="18" y2="18"></line>
+                </svg>
+                <svg id="close-icon" class="menu-icon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18"></path>
+                  <path d="m6 6 12 12"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu hidden">
+          <div class="mobile-menu-content">
+            <a href="#/" class="mobile-nav-link" data-link>Home</a>
+            <a href="#/privacy" class="mobile-nav-link" data-link>Privacy</a>
+            <a href="#/terms" class="mobile-nav-link" data-link>Terms</a>
+            <a href="#download" class="mobile-download-btn">Download on iOS</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Content Area -->
+      <div id="content" class="content-area">
+        <!-- Home Page -->
+        <div id="page-home" class="page">
+          <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero-section">
+              <!-- Background gradients -->
+              <div class="hero-bg-container">
+                <div class="hero-blob hero-blob-1"></div>
+                <div class="hero-blob hero-blob-2"></div>
+              </div>
+
+              <div class="hero-container">
+                <div class="hero-content">
+
+                  <!-- Left Content -->
+                  <div class="hero-text">
+                    <div class="hero-badge">
+                      <span class="hero-badge-dot"></span>
+                      <span class="hero-badge-text">New: Auto-Blocking Mode</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                      Reclaim your <br>
+                      <span class="hero-title-highlight">Khushoo</span>
+                    </h1>
+
+                    <p class="hero-description">
+                      Experience distraction-free Salah. Automatically block notifications and apps during prayer times to maintain focus where it matters most.
+                    </p>
+
+                    <div class="hero-cta">
+                      <a href="https://apps.apple.com/us/app/khushoo" class="app-store-link" aria-label="Download on the App Store">
+                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&releaseDate=1276560000&h=775388c3479611f72782759942a00c7e" alt="Download on the App Store" class="app-store-badge">
+                      </a>
+                      <a href="#features" class="explore-link">
+                        Explore Features
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Right Phone Mockup -->
+                  <div class="hero-phone">
+                    <!-- Phone Frame -->
+                    <div class="phone-frame">
+                      <!-- Screen Container -->
+                      <div class="phone-screen">
+                        <!-- App Mockup -->
+                        <div class="app-mockup">
+
+                          <!-- Dynamic Island -->
+                          <div class="dynamic-island">
+                            <div class="dynamic-island-indicator"></div>
+                            <div class="dynamic-island-camera"></div>
+                          </div>
+
+                          <!-- Header -->
+                          <div class="mockup-header">
+                            <div class="mockup-header-text">
+                              <h2 class="mockup-greeting">السلام عليكم</h2>
+                              <p class="mockup-subgreeting">Good evening, Mohamed Abdi</p>
+                            </div>
+                            <div class="mockup-avatar">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                              </svg>
+                            </div>
+                          </div>
+
+                          <!-- Scrollable Content Area -->
+                          <div class="mockup-content">
+
+                            <!-- Next Prayer Card -->
+                            <div class="prayer-card">
+                              <div class="prayer-card-header">
+                                <span class="prayer-card-title">Next Prayer</span>
+                                <div class="prayer-location">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                  </svg>
+                                  <span>Brooklyn Center, MN</span>
+                                </div>
+                              </div>
+
+                              <div class="prayer-info">
+                                <div class="prayer-name-row">
+                                  <span class="prayer-name-en">Fajr</span>
+                                  <span class="prayer-name-ar">- الفجر</span>
+                                </div>
+                                <div class="prayer-time">6:23 AM</div>
+                                <div class="prayer-countdown">in 10:09:04</div>
+                              </div>
+
+                              <div class="prayer-progress">
+                                <span>Isha</span>
+                                <div class="progress-bar">
+                                  <div class="progress-fill"></div>
+                                </div>
+                                <span>of the day</span>
+                              </div>
+                            </div>
+
+                            <!-- Featured Section -->
+                            <div class="featured-section">
+                              <div class="featured-header">
+                                <div class="featured-accent-bar"></div>
+                                <h2 class="featured-title">Featured</h2>
+                              </div>
+
+                              <!-- Featured Card -->
+                              <div class="featured-card">
+                                <div class="featured-card-header">
+                                  <div class="featured-rank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="crown-icon">
+                                      <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"></path>
+                                    </svg>
+                                    <span>#1</span>
+                                  </div>
+                                  <div class="featured-actions">
+                                    <button class="action-btn">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                        <polyline points="16 6 12 2 8 6"></polyline>
+                                        <line x1="12" x2="12" y1="2" y2="15"></line>
+                                      </svg>
+                                    </button>
+                                    <button class="action-btn">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                                      </svg>
+                                    </button>
+                                  </div>
+                                </div>
+
+                                <div class="featured-profile">
+                                  <div class="featured-avatar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="featured-avatar-icon">
+                                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                      <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                  </div>
+                                  <h3 class="featured-name">Idrees Abkr</h3>
+                                  <div class="featured-stats">
+                                    <span class="stat">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                      </svg>
+                                      5.8M
+                                    </span>
+                                    <span class="stat">
+                                      <span class="music-note">♪</span> 114
+                                    </span>
+                                  </div>
+                                </div>
+
+                                <div class="play-btn-container">
+                                  <button class="play-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                  </button>
+                                </div>
+                              </div>
+
+                              <!-- Partial Cards Row -->
+                              <div class="partial-cards">
+                                <div class="partial-card">
+                                  <div class="partial-rank">#2</div>
+                                </div>
+                                <div class="partial-card">
+                                  <div class="partial-rank">#3</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Tab Bar -->
+                          <div class="tab-bar">
+                            <div class="tab-item active">
+                              <div class="tab-icon-active">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                              </div>
+                              <span>Home</span>
+                            </div>
+
+                            <div class="tab-item">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                              </svg>
+                              <span>Prayer</span>
+                            </div>
+
+                            <div class="tab-item">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"></path>
+                                <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"></path>
+                                <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"></path>
+                                <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path>
+                              </svg>
+                              <span>Dhikr</span>
+                            </div>
+
+                            <div class="tab-item">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                              </svg>
+                              <span>Focus</span>
+                            </div>
+
+                            <div class="tab-item">
+                              <div class="tab-profile-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                  <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                              </div>
+                              <span>Profile</span>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Decorative blob behind phone -->
+                    <div class="phone-glow"></div>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="features-section">
+              <div class="features-container">
+                <div class="features-header">
+                  <h2 class="features-title">Focus on your Creator, not your phone</h2>
+                  <p class="features-subtitle">
+                    Khushoo utilizes advanced iOS Screen Time APIs to ensure your prayer times remain sacred and uninterrupted.
+                  </p>
+                </div>
+
+                <div class="features-grid">
+                  <!-- Feature 1: Strict App Blocking -->
+                  <div class="feature-card feature-card-primary">
+                    <div class="feature-card-bg-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                    </div>
+                    <div class="feature-icon feature-icon-primary">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                    </div>
+                    <h3 class="feature-title">Strict App Blocking</h3>
+                    <p class="feature-description feature-description-light">
+                      Eliminate distractions at the source. Khushoo automatically locks your selected apps (like Instagram, TikTok, or News) exactly when prayer time starts, and only unlocks them when you are done.
+                    </p>
+                  </div>
+
+                  <!-- Feature 2: Prayer Times -->
+                  <div class="feature-card">
+                    <div class="feature-icon feature-icon-blue">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                      </svg>
+                    </div>
+                    <h3 class="feature-title">Accurate Prayer Times</h3>
+                    <p class="feature-description">
+                      Precise calculation for Fajr, Dhuhr, Asr, Maghrib, and Isha based on your location. View the remaining time for the next prayer at a glance.
+                    </p>
+                  </div>
+
+                  <!-- Feature 3: Privacy First -->
+                  <div class="feature-card">
+                    <div class="feature-icon feature-icon-yellow">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                      </svg>
+                    </div>
+                    <h3 class="feature-title">Privacy Centric</h3>
+                    <p class="feature-description">
+                      Your data stays on your device. We use Apple's Family Controls API locally to manage restrictions without sending usage data to any server.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Feature Deep Dive -->
+                <div class="how-it-works">
+                  <div class="how-it-works-content">
+                    <div class="how-it-works-text">
+                      <div class="how-it-works-badge">
+                        <span>How it works</span>
+                      </div>
+                      <h3 class="how-it-works-title">Zero-Distraction Salah</h3>
+                      <p class="how-it-works-description">
+                        We don't just silence notifications; we remove the temptation entirely.
+                      </p>
+                      <ul class="how-it-works-list">
+                        <li class="how-it-works-item">
+                          <div class="step-number">
+                            <span>1</span>
+                          </div>
+                          <div class="step-content">
+                            <h4>Select Distractions</h4>
+                            <p>Choose the apps that steal your focus (e.g., Social Media, Games).</p>
+                          </div>
+                        </li>
+                        <li class="how-it-works-item">
+                          <div class="step-number">
+                            <span>2</span>
+                          </div>
+                          <div class="step-content">
+                            <h4>Auto-Engage</h4>
+                            <p>5 minutes before Athan, Strict Mode activates automatically.</p>
+                          </div>
+                        </li>
+                        <li class="how-it-works-item">
+                          <div class="step-number">
+                            <span>3</span>
+                          </div>
+                          <div class="step-content">
+                            <h4>Guaranteed Khushoo</h4>
+                            <p>Apps are greyed out and unopenable until your prayer is complete.</p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="how-it-works-visual">
+                      <div class="visual-gradient"></div>
+                      <div class="app-grid">
+                        <div class="app-grid-item">
+                          <div class="app-circle"></div>
+                        </div>
+                        <div class="app-grid-item blocked">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                          </svg>
+                        </div>
+                        <div class="app-grid-item">
+                          <div class="app-circle"></div>
+                        </div>
+                        <div class="app-grid-item blocked">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                          </svg>
+                        </div>
+                        <div class="app-grid-item">
+                          <div class="app-circle"></div>
+                        </div>
+                        <div class="app-grid-item blocked">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                          </svg>
+                        </div>
+                        <div class="app-grid-item">
+                          <div class="app-circle"></div>
+                        </div>
+                        <div class="app-grid-item blocked">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                          </svg>
+                        </div>
+                        <div class="app-grid-item">
+                          <div class="app-circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section id="download" class="cta-section">
+              <h2 class="cta-title">Ready to improve your Salat?</h2>
+              <p class="cta-description">Download Khushoo for iOS today and find your focus.</p>
+              <div class="cta-btn-container">
+                <a href="https://apps.apple.com/us/app/khushoo" class="cta-btn">Download Now</a>
+              </div>
+            </section>
+          </main>
+        </div>
+
+        <!-- Privacy Page -->
+        <div id="page-privacy" class="page hidden">
+          <div class="legal-page">
+            <h1 class="legal-title">Privacy Policy</h1>
+            <p class="legal-date">Last updated: <span id="privacy-date"></span></p>
+
+            <div class="legal-content">
+              <section>
+                <h2>1. Introduction</h2>
+                <p>
+                  Welcome to Khushoo. We respect your privacy and are committed to protecting your personal data.
+                  This privacy policy will inform you as to how we look after your personal data when you visit our website
+                  or use our mobile application and tell you about your privacy rights.
+                </p>
+              </section>
+
+              <section>
+                <h2>2. Data Collection</h2>
+                <p>
+                  <strong>We do not collect personal data on our servers.</strong> Khushoo is designed to be privacy-first.
+                  All processing regarding prayer times, location, and app blocking schedules happens locally on your device.
+                </p>
+              </section>
+
+              <section>
+                <h2>3. Location Data</h2>
+                <p>
+                  Our app requires access to your location solely to calculate accurate prayer times for your specific area.
+                  This location data is processed locally on your device and is not transmitted to us or third parties.
+                </p>
+              </section>
+
+              <section>
+                <h2>4. Screen Time & Family Controls</h2>
+                <p>
+                  Khushoo utilizes Apple's Screen Time and Family Controls APIs to provide the app blocking functionality.
+                  We do not have access to see which apps you have installed, nor do we track your usage history.
+                  The restrictions are applied by the iOS system based on the parameters you set within the app.
+                </p>
+              </section>
+
+              <section>
+                <h2>5. Contact</h2>
+                <p>
+                  If you have any questions about this privacy policy, please contact us via GitHub or at support@khushoo.app.
+                </p>
+              </section>
+            </div>
+          </div>
+        </div>
+
+        <!-- Terms Page -->
+        <div id="page-terms" class="page hidden">
+          <div class="legal-page">
+            <h1 class="legal-title">Terms of Service</h1>
+            <p class="legal-date">Last updated: <span id="terms-date"></span></p>
+
+            <div class="legal-content">
+              <section>
+                <h2>1. Agreement to Terms</h2>
+                <p>
+                  By accessing or using the Khushoo application, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the application.
+                </p>
+              </section>
+
+              <section>
+                <h2>2. Use License</h2>
+                <p>
+                  Permission is granted to download one copy of the materials (information or software) on Khushoo's application for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.
+                </p>
+              </section>
+
+              <section>
+                <h2>3. Disclaimer</h2>
+                <p>
+                  The materials on Khushoo's application are provided on an 'as is' basis. Khushoo makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+                </p>
+              </section>
+
+              <section>
+                <h2>4. Prayer Times Accuracy</h2>
+                <p>
+                  While we strive for high accuracy in prayer time calculations, Khushoo is a tool to assist you. Variations in calculation methods and local conventions may apply. Users are encouraged to verify times with their local mosques.
+                </p>
+              </section>
+
+              <section>
+                <h2>5. Modifications</h2>
+                <p>
+                  Khushoo may revise these terms of service for its application at any time without notice. By using this application you are agreeing to be bound by the then current version of these terms of service.
+                </p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-content">
+            <div class="footer-brand">
+              <span class="footer-logo">Khushoo</span>
+              <p class="footer-copyright">&copy; 2026 All rights reserved.</p>
+            </div>
+
+            <div class="footer-links">
+              <a href="#/" class="footer-link" data-link>Home</a>
+              <a href="#/privacy" class="footer-link" data-link>Privacy Policy</a>
+              <a href="#/terms" class="footer-link" data-link>Terms of Service</a>
+              <a href="https://github.com/abduljabar5/Khushoo123" target="_blank" rel="noreferrer" class="footer-link">GitHub</a>
+              <a href="mailto:support@khushoo.app" class="footer-link">Contact</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="main.js"></script>
   </body>
 </html>
