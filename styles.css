@@ -1483,3 +1483,99 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* ============================================
+   Support Page
+   ============================================ */
+.support-page {
+  padding-top: 8rem;
+}
+
+.support-intro {
+  font-size: 1.125rem;
+  color: var(--gray-400);
+  margin-bottom: 3rem;
+  line-height: 1.75;
+}
+
+.support-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.support-section {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  padding: 2rem;
+}
+
+.support-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.support-section p {
+  line-height: 1.75;
+  color: var(--gray-400);
+}
+
+.support-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(250, 204, 21, 0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--khushoo-primary);
+}
+
+.support-email {
+  display: inline-block;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--khushoo-primary);
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+  transition: all 0.2s ease;
+}
+
+.support-email:hover {
+  background-color: rgba(74, 222, 128, 0.2);
+  transform: translateY(-2px);
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.faq-item {
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.faq-question {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.faq-answer {
+  color: var(--gray-400);
+  line-height: 1.75;
+}

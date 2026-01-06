@@ -17,7 +17,8 @@
   const pages = {
     '/': document.getElementById('page-home'),
     '/privacy': document.getElementById('page-privacy'),
-    '/terms': document.getElementById('page-terms')
+    '/terms': document.getElementById('page-terms'),
+    '/support': document.getElementById('page-support')
   };
 
   // State
