@@ -1119,6 +1119,58 @@ a:hover {
   color: var(--text-muted);
 }
 
+/* Haya Mode Card */
+.haya-mode-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(196, 165, 116, 0.1) 100%);
+  border: 1px solid var(--sacred-gold-light);
+  border-radius: var(--radius-md);
+}
+
+.haya-mode-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.haya-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sacred-gold-light);
+  color: var(--sacred-gold);
+  border-radius: var(--radius-sm);
+}
+
+.haya-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.haya-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.haya-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.haya-note {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  text-align: center;
+  font-style: italic;
+}
+
 /* Prayer Panel Styles */
 .prayer-panel-header {
   margin-bottom: 20px;
